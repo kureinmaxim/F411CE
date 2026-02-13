@@ -1,0 +1,16 @@
+Debug/
+Release/
+build/
+
+*.elf
+*.hex
+*.bin
+*.map
+*.list
+*.d
+*.o
+*.su
+*.cyclo
+
+.settings/language.settings.xml
+.DS_Store
