@@ -1,7 +1,9 @@
+# Build output directories
 Debug/
 Release/
 build/
 
+# Build artifacts
 *.elf
 *.hex
 *.bin
@@ -12,5 +14,11 @@ build/
 *.su
 *.cyclo
 
+# STM32CubeIDE workspace metadata (generated per machine)
+.metadata/
+
+# Auto-generated scanner config (contains absolute paths)
 .settings/language.settings.xml
+
+# macOS
 .DS_Store
