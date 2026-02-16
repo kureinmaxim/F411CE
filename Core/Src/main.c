@@ -100,7 +100,7 @@ void Uart1Task(void *argument);
 void LedTask(void *pvParameters) {
   while (1) {
     HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
-    vTaskDelay(pdMS_TO_TICKS(5000));
+    vTaskDelay(pdMS_TO_TICKS(2000));
   }
 }
 

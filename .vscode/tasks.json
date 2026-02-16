@@ -1,10 +1,5 @@
 {
   "version": "2.0.0",
-  "options": {
-    "env": {
-      "PATH": "C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\\tools\\bin;C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.make.win32_2.2.0.202409170845\\tools\\bin;${env:PATH}"
-    }
-  },
   "tasks": [
     {
       "label": "Build",
@@ -18,8 +13,7 @@
       "problemMatcher": ["$gcc"],
       "presentation": {
         "reveal": "always",
-        "panel": "shared",
-        "clear": false
+        "panel": "shared"
       }
     },
     {
@@ -38,10 +32,7 @@
       "dependsOrder": "sequence",
       "dependsOn": ["Clean", "Build"],
       "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      }
+      "group": "build"
     },
     {
       "label": "Flash",
@@ -51,7 +42,7 @@
         "-f",
         "Run.cfg",
         "-c",
-        "program Debug/primGPT_F411.elf verify reset exit"
+        "program Debug/F411CE.elf verify reset exit"
       ],
       "problemMatcher": [],
       "presentation": {
@@ -63,17 +54,13 @@
       "label": "Build & Flash",
       "dependsOrder": "sequence",
       "dependsOn": ["Build", "Flash"],
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared"
-      }
+      "problemMatcher": []
     },
     {
-      "label": "Size",
+      "label": "Firmware Size",
       "type": "shell",
       "command": "arm-none-eabi-size",
-      "args": ["Debug/primGPT_F411.elf"],
+      "args": ["Debug/F411CE.elf"],
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",

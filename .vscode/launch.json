@@ -4,7 +4,7 @@
     {
       "name": "Debug (OpenOCD)",
       "cwd": "${workspaceFolder}",
-      "executable": "${workspaceFolder}/Debug/primGPT_F411.elf",
+      "executable": "${workspaceFolder}/Debug/F411CE.elf",
       "request": "launch",
       "type": "cortex-debug",
       "runToEntryPoint": "main",
@@ -14,13 +14,12 @@
       "preLaunchTask": "Build",
       "showDevDebugOutput": "raw",
       "device": "STM32F411CE",
-      "interface": "swd",
-      "svdFile": "${workspaceFolder}/STM32F411xE.svd"
+      "interface": "swd"
     },
     {
       "name": "Attach (OpenOCD)",
       "cwd": "${workspaceFolder}",
-      "executable": "${workspaceFolder}/Debug/primGPT_F411.elf",
+      "executable": "${workspaceFolder}/Debug/F411CE.elf",
       "request": "attach",
       "type": "cortex-debug",
       "servertype": "openocd",
@@ -28,8 +27,7 @@
       "searchDir": ["${workspaceFolder}"],
       "showDevDebugOutput": "raw",
       "device": "STM32F411CE",
-      "interface": "swd",
-      "svdFile": "${workspaceFolder}/STM32F411xE.svd"
+      "interface": "swd"
     }
   ]
 }
