@@ -17,7 +17,7 @@
                 "USE_HAL_DRIVER",
                 "STM32F411xE"
             ],
-            "compilerPath": "C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\\tools\\bin\\arm-none-eabi-gcc.exe",
+            "compilerPath": "arm-none-eabi-gcc",
             "cStandard": "c99",
             "cppStandard": "c++11",
             "intelliSenseMode": "gcc-arm"
