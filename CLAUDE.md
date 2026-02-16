@@ -6,6 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **primGPT_F411** — embedded firmware for STM32F411CEUx (BlackPill board) running FreeRTOS v10.3.1. Ported from STM32F103; key change was USART3 → USART6 for debug output. Documentation files are in Russian.
 
+## VS Code Setup
+
+The project is fully configured for development in Visual Studio Code:
+- `.vscode/tasks.json` — build tasks with auto-configured PATH to STM32CubeIDE 1.17.0 toolchain
+- `.vscode/launch.json` — Cortex-Debug configuration for OpenOCD debugging
+- `.vscode/c_cpp_properties.json` — IntelliSense configuration with proper includes
+
+**Documentation**:
+- `QUICKSTART.md` — 3-step quick start guide for VS Code setup
+- `VSCODE_GUIDE.md` — comprehensive guide (build, debug, troubleshooting)
+
+**First build**: Must be done once in STM32CubeIDE to generate `Debug/makefile`. After that, all development can be done in VS Code using `Ctrl+Shift+B` to build.
+
 ## Build System
 
 The project uses **STM32CubeIDE** (Eclipse CDT) with auto-generated makefiles. Toolchain: `arm-none-eabi-gcc` (GNU Tools for STM32 13.3.rel1).
@@ -42,11 +55,13 @@ HSE 25 MHz → PLL → SYSCLK 96 MHz. APB1: 48 MHz, APB2: 96 MHz.
 
 | Task | Stack | Priority | Role |
 |------|-------|----------|------|
-| `defaultTask` | 1024 B | Normal | Heap/stack diagnostics every 5 sec |
+| `defaultTask` | 2048 B | Normal | Heap/stack diagnostics every 5 sec |
 | `LedTask` | 512 B | Normal | PC13 LED blink (1 sec) |
 | `Uart1Task` | 2048 B | AboveNormal | UART command processing |
 
 Heap: 10 KB (`heap_4`), ~41% used. CMSIS-RTOS v2 API. Tick rate: 1000 Hz.
+
+**Recent changes**: `defaultTask` stack increased from 1024 to 2048 B (was using 71%, now ~36%) for headroom.
 
 ### Peripherals
 
