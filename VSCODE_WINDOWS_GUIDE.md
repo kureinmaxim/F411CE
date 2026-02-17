@@ -59,9 +59,9 @@ code --install-extension marus25.cortex-debug
 2. Найдите переменную `Path` и добавьте пути:
 
 ```
-C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\tools\bin
+C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\tools\bin
 C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.make.win32_2.2.0.202409170845\tools\bin
-C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.openocd.win32_2.4.100.202409170845\tools\bin
+C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.openocd.win32_2.4.100.202501161620\tools\bin
 ```
 
 > Пути зависят от версии STM32CubeIDE. Проверьте актуальные пути в `C:\ST\`.
@@ -157,7 +157,7 @@ make -C Debug clean && make -C Debug all -j8
 ### Метод 1: OpenOCD (рекомендуется)
 
 ```bash
-openocd -f Run.cfg -c "program Debug/F411CE.elf verify reset exit"
+openocd -s "C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951\resources\openocd\st_scripts" -f Run.cfg -c "program Debug/F411CE.elf verify reset exit"
 ```
 
 ### Метод 2: ST-Link Utility
@@ -221,7 +221,7 @@ Ctrl+Shift+P — `Tasks: Run Task` — `Flash`.
       "args": ["-C", "Debug", "all", "-j8"],
       "options": {
         "env": {
-          "PATH": "C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\\tools\\bin;C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.make.win32_2.2.0.202409170845\\tools\\bin;${env:PATH}"
+          "PATH": "C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\\tools\\bin;C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.make.win32_2.2.0.202409170845\\tools\\bin;${env:PATH}"
         }
       },
       "group": {
@@ -241,7 +241,7 @@ Ctrl+Shift+P — `Tasks: Run Task` — `Flash`.
       "args": ["-C", "Debug", "clean"],
       "options": {
         "env": {
-          "PATH": "C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\\tools\\bin;C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.make.win32_2.2.0.202409170845\\tools\\bin;${env:PATH}"
+          "PATH": "C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\\tools\\bin;C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.make.win32_2.2.0.202409170845\\tools\\bin;${env:PATH}"
         }
       },
       "problemMatcher": [],
@@ -269,7 +269,7 @@ Ctrl+Shift+P — `Tasks: Run Task` — `Flash`.
       ],
       "options": {
         "env": {
-          "PATH": "C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.openocd.win32_2.4.100.202409170845\\tools\\bin;${env:PATH}"
+          "PATH": "C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.openocd.win32_2.4.100.202501161620\\tools\\bin;${env:PATH}"
         }
       },
       "problemMatcher": [],
@@ -291,7 +291,7 @@ Ctrl+Shift+P — `Tasks: Run Task` — `Flash`.
       "args": ["Debug/F411CE.elf"],
       "options": {
         "env": {
-          "PATH": "C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130\\tools\\bin;${env:PATH}"
+          "PATH": "C:\\ST\\STM32CubeIDE_1.17.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344\\tools\\bin;${env:PATH}"
         }
       },
       "problemMatcher": [],
@@ -323,14 +323,14 @@ Ctrl+Shift+P — `Tasks: Run Task` — `Flash`.
                 "${workspaceFolder}/Middlewares/Third_Party/FreeRTOS/Source/include",
                 "${workspaceFolder}/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2",
                 "${workspaceFolder}/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F",
-                "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130/tools/arm-none-eabi/include",
-                "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130/tools/arm-none-eabi/include/sys"
+                "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/arm-none-eabi/include",
+                "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/arm-none-eabi/include/sys"
             ],
             "defines": [
                 "USE_HAL_DRIVER",
                 "STM32F411xE"
             ],
-            "compilerPath": "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.1.0.202410251130/tools/bin/arm-none-eabi-gcc.exe",
+            "compilerPath": "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/arm-none-eabi-gcc.exe",
             "cStandard": "c99",
             "cppStandard": "c++11",
             "intelliSenseMode": "gcc-arm"
@@ -357,7 +357,10 @@ Ctrl+Shift+P — `Tasks: Run Task` — `Flash`.
       "runToEntryPoint": "main",
       "servertype": "openocd",
       "configFiles": ["Run.cfg"],
-      "searchDir": ["${workspaceFolder}"],
+      "searchDir": [
+        "${workspaceFolder}",
+        "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951/resources/openocd/st_scripts"
+      ],
       "preLaunchTask": "Build",
       "showDevDebugOutput": "raw",
       "device": "STM32F411CE",
@@ -371,7 +374,10 @@ Ctrl+Shift+P — `Tasks: Run Task` — `Flash`.
       "type": "cortex-debug",
       "servertype": "openocd",
       "configFiles": ["Run.cfg"],
-      "searchDir": ["${workspaceFolder}"],
+      "searchDir": [
+        "${workspaceFolder}",
+        "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951/resources/openocd/st_scripts"
+      ],
       "showDevDebugOutput": "raw",
       "device": "STM32F411CE",
       "interface": "swd"
@@ -410,13 +416,13 @@ arm-none-eabi-objcopy -O binary Debug/F411CE.elf Debug/F411CE.bin
 
 ```bash
 # Запуск GDB сервера (отладка без VS Code)
-openocd -f Run.cfg
+openocd -s "C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951\resources\openocd\st_scripts" -f Run.cfg
 
 # Сброс платы
-openocd -f Run.cfg -c "init; reset; exit"
+openocd -s "C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951\resources\openocd\st_scripts" -f Run.cfg -c "init; reset; exit"
 
 # Чтение Flash памяти (512 KB)
-openocd -f Run.cfg -c "init; flash read_bank 0 flash_dump.bin 0 0x80000; exit"
+openocd -s "C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951\resources\openocd\st_scripts" -f Run.cfg -c "init; flash read_bank 0 flash_dump.bin 0 0x80000; exit"
 ```
 
 ---
@@ -482,9 +488,21 @@ openocd -f Run.cfg -c "init; flash read_bank 0 flash_dump.bin 0 0x80000; exit"
 
 **Решение:**
 1. Установите [ST-Link drivers](https://www.st.com/en/development-tools/stsw-link009.html)
-2. Проверьте подключение: `openocd -f Run.cfg`
+2. Проверьте подключение: `openocd -s "C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951\resources\openocd\st_scripts" -f Run.cfg`
 3. Убедитесь, что ST-Link не занят другой программой (STM32CubeIDE, ST-Link Utility)
 4. Проверьте в Device Manager — ST-Link должен отображаться
+
+### Проблема: `Can't find interface/stlink*.cfg`
+
+**Причина:** OpenOCD запущен без каталога scripts (`st_scripts`).
+
+**Решение:**
+1. Для задачи `Flash` использовать `tasks_windows.json` (там добавлен `-s ...\st_scripts`).
+2. Для `F5` в `launch.json` добавить путь к `st_scripts` в `searchDir`.
+3. В `Run.cfg` оставить:
+   - `source [find interface/stlink-dap.cfg]`
+   - `transport select "dapdirect_swd"`
+   - `set CLOCK_FREQ 4000`
 
 ### Проблема: `timed out while waiting for target halted`
 
