@@ -12,6 +12,42 @@
       "configFiles": ["Run.cfg"],
       "searchDir": [
         "${workspaceFolder}",
+        "/opt/homebrew/share/openocd/scripts"
+      ],
+      "preLaunchTask": "Build",
+      "showDevDebugOutput": "raw",
+      "device": "STM32F411CE",
+      "interface": "swd",
+      "rtos": "FreeRTOS"
+    },
+    {
+      "name": "Attach (OpenOCD)",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/Debug/F411CE.elf",
+      "request": "attach",
+      "type": "cortex-debug",
+      "servertype": "openocd",
+      "configFiles": ["Run.cfg"],
+      "searchDir": [
+        "${workspaceFolder}",
+        "/opt/homebrew/share/openocd/scripts"
+      ],
+      "showDevDebugOutput": "raw",
+      "device": "STM32F411CE",
+      "interface": "swd",
+      "rtos": "FreeRTOS"
+    },
+    {
+      "name": "Debug (OpenOCD) Windows",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/Debug/F411CE.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "runToEntryPoint": "main",
+      "servertype": "openocd",
+      "configFiles": ["Run.cfg"],
+      "searchDir": [
+        "${workspaceFolder}",
         "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951/resources/openocd/st_scripts"
       ],
       "preLaunchTask": "Build",
@@ -20,7 +56,7 @@
       "interface": "swd"
     },
     {
-      "name": "Attach (OpenOCD)",
+      "name": "Attach (OpenOCD) Windows",
       "cwd": "${workspaceFolder}",
       "executable": "${workspaceFolder}/Debug/F411CE.elf",
       "request": "attach",

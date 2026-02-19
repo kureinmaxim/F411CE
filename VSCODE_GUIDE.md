@@ -176,7 +176,7 @@ openocd -f Run.cfg -c "program Debug/F411CE.elf verify reset exit"
 
 3. Подключите ST-Link к плате BlackPill
 
-4. Нажмите **F5** или откройте вкладку **Run and Debug** (Cmd+Shift+D) и выберите конфигурацию **Debug (OpenOCD)**
+4. Нажмите **F5** или откройте вкладку **Run and Debug** (Cmd+Shift+D) и выберите конфигурацию **Debug (OpenOCD)** (на macOS эта конфигурация использует OpenOCD из Homebrew; подробнее см. [OPENOCD_CURSOR.md](OPENOCD_CURSOR.md)).
 
 ### Возможности отладчика
 
