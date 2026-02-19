@@ -9,11 +9,17 @@
       "type": "cortex-debug",
       "runToEntryPoint": "main",
       "servertype": "openocd",
-      "configFiles": ["Run.cfg"],
+      "configFiles": [
+        "Run.cfg"
+      ],
       "searchDir": [
         "${workspaceFolder}",
         "/opt/homebrew/share/openocd/scripts"
       ],
+      "armToolchainPath": "/opt/homebrew/bin",
+      "gdbPath": "/opt/homebrew/bin/arm-none-eabi-gdb",
+      "serverpath": "/opt/homebrew/bin/openocd",
+      "objdumpPath": "/opt/homebrew/bin/arm-none-eabi-objdump",
       "preLaunchTask": "Build",
       "showDevDebugOutput": "raw",
       "device": "STM32F411CE",
@@ -27,7 +33,9 @@
       "request": "attach",
       "type": "cortex-debug",
       "servertype": "openocd",
-      "configFiles": ["Run.cfg"],
+      "configFiles": [
+        "Run.cfg"
+      ],
       "searchDir": [
         "${workspaceFolder}",
         "/opt/homebrew/share/openocd/scripts"
@@ -45,7 +53,9 @@
       "type": "cortex-debug",
       "runToEntryPoint": "main",
       "servertype": "openocd",
-      "configFiles": ["Run.cfg"],
+      "configFiles": [
+        "Run.cfg"
+      ],
       "searchDir": [
         "${workspaceFolder}",
         "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951/resources/openocd/st_scripts"
@@ -62,7 +72,9 @@
       "request": "attach",
       "type": "cortex-debug",
       "servertype": "openocd",
-      "configFiles": ["Run.cfg"],
+      "configFiles": [
+        "Run.cfg"
+      ],
       "searchDir": [
         "${workspaceFolder}",
         "C:/ST/STM32CubeIDE_1.17.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951/resources/openocd/st_scripts"
