@@ -11,23 +11,24 @@
 2. [Первый запуск (3 шага)](#первый-запуск-3-шага)
 3. [Основные команды](#основные-команды)
 4. [Характеристики платы](#характеристики-платы)
+5. [OpenOCD конфигурация](#openocd-конфигурация)
 
 ### Отладка
-5. [Что такое отладка](#что-такое-отладка)
-6. [Интерфейс Cortex-Debug](#интерфейс-cortex-debug)
-7. [Первый запуск отладки](#первый-запуск-отладки)
-8. [Основы работы с отладчиком](#основы-работы-с-отладчиком)
-9. [Точки останова (Breakpoints)](#точки-останова-breakpoints)
-10. [Пошаговое выполнение](#пошаговое-выполнение)
-11. [Просмотр переменных](#просмотр-переменных)
-12. [Стек вызовов](#стек-вызовов)
-13. [Регистры и периферия](#регистры-и-периферия)
-14. [Отладка FreeRTOS](#отладка-freertos)
-15. [Типичные сценарии отладки](#типичные-сценарии-отладки)
-16. [SWO трассировка](#swo-трассировка)
-17. [Горячие клавиши](#горячие-клавиши)
-18. [Troubleshooting](#troubleshooting)
-19. [Частые вопросы](#частые-вопросы)
+1. [Что такое отладка](#что-такое-отладка)
+2. [Интерфейс Cortex-Debug](#интерфейс-cortex-debug)
+3. [Первый запуск отладки](#первый-запуск-отладки)
+4. [Основы работы с отладчиком](#основы-работы-с-отладчиком)
+5. [Точки останова (Breakpoints)](#точки-останова-breakpoints)
+6. [Пошаговое выполнение](#пошаговое-выполнение)
+7. [Просмотр переменных](#просмотр-переменных)
+8. [Стек вызовов](#стек-вызовов)
+9. [Регистры и периферия](#регистры-и-периферия)
+10. [Отладка FreeRTOS](#отладка-freertos)
+11. [Типичные сценарии отладки](#типичные-сценарии-отладки)
+12. [SWO трассировка](#swo-трассировка)
+13. [Горячие клавиши](#горячие-клавиши)
+14. [Troubleshooting](#troubleshooting)
+15. [Частые вопросы](#частые-вопросы)
 
 ---
 
@@ -139,6 +140,68 @@ openocd -f Run.cfg -c "program Debug/F411CE.elf verify reset exit"
 - **USART6** (115200 8N1) — debug-вывод через `log_printf()` / `printf_uart3()`
 - **SPI1** (38.4 kHz) — FRAM 32 KB, soft CS на PA4
 - **GPIO** — PC13 = LED, PC15 = UART1Task activity, PA4 = FRAM CS
+
+---
+
+## OpenOCD конфигурация
+
+### Рабочие параметры
+
+| Параметр | Значение |
+|----------|----------|
+| **Конфиг** | `Run.cfg` |
+| **MCU target** | `stm32f4x` |
+| **Интерфейс** | `stlink-dap` + `dapdirect_swd` |
+| **SWD clock** | 4000 kHz |
+| **ELF** | `Debug/F411CE.elf` |
+
+### Важно: searchDir в launch.json
+
+OpenOCD требует путь к каталогу скриптов. Без него ошибка:
+```
+Can't find interface/stlink-dap.cfg
+```
+
+Пути в `launch.json` → `searchDir`:
+- **macOS (Apple Silicon):** `/opt/homebrew/share/openocd/scripts`
+- **macOS (Intel):** `/usr/local/share/openocd/scripts`
+- **Windows:** `C:\ST\STM32CubeIDE_1.17.0\...\st_scripts` (полный путь в Windows-конфигурациях)
+
+### Проверочные команды (терминал macOS)
+
+```bash
+# Проверка конфига (должен завершиться без ошибок)
+openocd -f Run.cfg -c "shutdown"
+
+# Прошивка
+openocd -f Run.cfg -c "program Debug/F411CE.elf verify reset exit"
+```
+
+В норме: `Programming Finished`, `Verified OK`, `Resetting Target`.
+
+### Проверочные команды (PowerShell Windows)
+
+```powershell
+# Проверка конфига
+& "C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.openocd.win32_2.4.100.202501161620\tools\bin\openocd.exe" `
+  -s "C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951\resources\openocd\st_scripts" `
+  -f "Run.cfg" `
+  -c "shutdown"
+
+# Прошивка
+& "C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.openocd.win32_2.4.100.202501161620\tools\bin\openocd.exe" `
+  -s "C:\ST\STM32CubeIDE_1.17.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.debug.openocd_2.3.200.202510310951\resources\openocd\st_scripts" `
+  -f "Run.cfg" `
+  -c "program Debug/F411CE.elf verify reset exit"
+```
+
+### Что настроено в .vscode
+
+- **launch.json**
+  - **macOS:** «Debug (OpenOCD)» и «Attach (OpenOCD)» с `searchDir` → `/opt/homebrew/share/openocd/scripts`
+  - **Windows:** «Debug (OpenOCD) Windows» и «Attach (OpenOCD) Windows» с путём к `st_scripts` STM32CubeIDE
+- **tasks.json** (macOS): сборка и Flash через `openocd -f Run.cfg` (openocd из PATH)
+- **tasks_windows.json** (Windows): `Flash` с `-s ...\st_scripts`, пути к GCC/Make/OpenOCD из STM32CubeIDE 1.17.0
 
 ---
 
@@ -803,9 +866,11 @@ RTOS: LedTask (Blocked)
 **Решение:**
 1. Проверьте подключение ST-Link (USB кабель, питание платы)
 2. Закройте другие программы, использующие ST-Link (STM32CubeIDE)
-3. Перезапустите Cursor
+3. Перезапустите Cursor (`Developer: Reload Window`)
 4. На macOS проверьте System Settings → Privacy & Security (USB-доступ)
-5. Попробуйте команду вручную:
+5. На Windows: установите драйвер ST-Link (`STSW-LINK009`), проверьте в диспетчере устройств
+6. Попробуйте команду вручную:
+
    ```bash
    openocd -f Run.cfg
    ```

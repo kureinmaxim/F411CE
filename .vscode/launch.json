@@ -23,6 +23,7 @@
       "preLaunchTask": "Build",
       "showDevDebugOutput": "raw",
       "device": "STM32F411CE",
+      "svdFile": "${workspaceFolder}/STM32F411.svd",
       "interface": "swd",
       "rtos": "FreeRTOS"
     },
@@ -42,6 +43,7 @@
       ],
       "showDevDebugOutput": "raw",
       "device": "STM32F411CE",
+      "svdFile": "${workspaceFolder}/STM32F411.svd",
       "interface": "swd",
       "rtos": "FreeRTOS"
     },
