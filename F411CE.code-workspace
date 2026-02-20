@@ -5,6 +5,8 @@
 		}
 	],
 	"settings": {
-		"stm32-for-vscode.openOCDPath": "/opt/homebrew/bin/openocd"
+		"stm32-for-vscode.openOCDPath": "/opt/homebrew/bin/openocd",
+		"cortex-debug.armToolchainPath": "/opt/homebrew/bin",
+		"cortex-debug.openocdPath": "/opt/homebrew/bin/openocd"
 	}
 }

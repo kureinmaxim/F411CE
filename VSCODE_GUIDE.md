@@ -80,7 +80,7 @@ openocd --version
 
 ## Структура проекта
 
-```
+```text
 F411CE/
 ├── .vscode/                    # Конфигурация Cursor / VS Code
 │   ├── c_cpp_properties.json   # IntelliSense (пути к заголовкам)
@@ -138,12 +138,13 @@ make -C Debug clean && make -C Debug all -j8
 **Способ 2 (если Cmd+Shift+B не работает в Cursor):** **Cmd+Shift+P** → ввести `Tasks: Run Task` → Enter → выбрать задачу
 
 Доступные задачи:
-  - `Build` — сборка проекта (по умолчанию)
-  - `Clean` — очистка
-  - `Clean & Build` — пересборка
-  - `Flash` — прошивка через OpenOCD
-  - `Build & Flash` — сборка + прошивка
-  - `Firmware Size` — показать размер прошивки (text/data/bss)
+
+- `Build` — сборка проекта (по умолчанию)
+- `Clean` — очистка
+- `Clean & Build` — пересборка
+- `Flash` — прошивка через OpenOCD
+- `Build & Flash` — сборка + прошивка
+- `Firmware Size` — показать размер прошивки (text/data/bss)
 
 ---
 
@@ -168,6 +169,7 @@ openocd -f Run.cfg -c "program Debug/F411CE.elf verify reset exit"
 ### Cortex-Debug (рекомендуется)
 
 1. Установите расширение **Cortex-Debug**:
+
    ```bash
    cursor --install-extension marus25.cortex-debug
    ```
@@ -351,7 +353,7 @@ openocd -f Run.cfg -c "init; flash read_bank 0 flash_dump.bin 0 0x80000; exit"
 ### Редактирование
 
 | Клавиша | Действие |
-|---------|----------|
+| --------- | ---------- |
 | `Ctrl+Space` | Автодополнение |
 | `F12` | Перейти к определению |
 | `Shift+F12` | Найти все ссылки |
@@ -363,7 +365,7 @@ openocd -f Run.cfg -c "init; flash read_bank 0 flash_dump.bin 0 0x80000; exit"
 ### Сборка и отладка
 
 | Клавиша | Действие |
-|---------|----------|
+| --------- | ---------- |
 | `Cmd+Shift+B` | Запустить задачу сборки |
 | `F5` | Начать отладку |
 | `Cmd+F5` | Запустить без отладки |
@@ -376,7 +378,7 @@ openocd -f Run.cfg -c "init; flash read_bank 0 flash_dump.bin 0 0x80000; exit"
 ### Навигация
 
 | Клавиша | Действие |
-|---------|----------|
+| --------- | ---------- |
 | `Cmd+P` | Быстрый переход к файлу |
 | `Cmd+Shift+F` | Поиск в проекте |
 | `Ctrl+G` | Перейти к строке |
@@ -390,14 +392,17 @@ openocd -f Run.cfg -c "init; flash read_bank 0 flash_dump.bin 0 0x80000; exit"
 ### Проблема: `arm-none-eabi-gcc not found`
 
 **Решение:**
+
 ```bash
 brew install arm-none-eabi-gcc
 ```
+
 Перезапустите Cursor после установки.
 
 ### Проблема: `make: command not found`
 
 **Решение:**
+
 ```bash
 xcode-select --install
 ```
@@ -405,6 +410,7 @@ xcode-select --install
 ### Проблема: `openocd` не установлен
 
 **Решение:**
+
 ```bash
 brew install open-ocd
 ```
@@ -412,6 +418,7 @@ brew install open-ocd
 ### Проблема: `openocd` не находит ST-Link
 
 **Решение:**
+
 1. Проверьте подключение USB-кабеля к BlackPill
 2. Проверьте: `openocd -f Run.cfg`
 3. Убедитесь, что ST-Link не занят другой программой (STM32CubeIDE)
@@ -422,7 +429,8 @@ brew install open-ocd
 **Причина:** `Run.cfg` требует подключённый пин NRST (аппаратный reset), а провод NRST не подключён к ST-Link.
 
 **Решение:** в `Run.cfg` замените строку reset_config на программный сброс:
-```
+
+```tcl
 # Было (требует провод NRST):
 reset_config srst_only srst_nogate connect_assert_srst
 
@@ -443,6 +451,7 @@ grep -rl "fcyclomatic-complexity" Debug/
 ### Проблема: IntelliSense не работает
 
 **Решение:**
+
 1. Откройте Command Palette (Cmd+Shift+P)
 2. Выполните: `C/C++: Reset IntelliSense Database`
 3. Перезапустите Cursor
@@ -451,6 +460,7 @@ grep -rl "fcyclomatic-complexity" Debug/
 ### Проблема: отладчик не останавливается на breakpoint
 
 **Решение:**
+
 1. Убедитесь, что проект собран с флагами `-g3 -O0` (Debug конфигурация)
 2. Проверьте, что прошивка актуальная (пересоберите и прошейте заново)
 3. В `launch.json` должно быть: `"runToEntryPoint": "main"`
@@ -458,6 +468,7 @@ grep -rl "fcyclomatic-complexity" Debug/
 ### Проблема: сборка проходит, но прошивка не запускается
 
 **Решение:**
+
 1. Проверьте linker script (`STM32F411CEUX_FLASH.ld`)
 2. Убедитесь, что OpenOCD корректно прошил: должна быть строка `verified XXX bytes`
 3. Сделайте полный сброс: `openocd -f Run.cfg -c "init; reset halt; reset; exit"`
@@ -466,6 +477,7 @@ grep -rl "fcyclomatic-complexity" Debug/
 
 **Решение:**
 STM32F411CEUx имеет 128 KB RAM и 512 KB Flash.
+
 1. Проверьте использование памяти: `arm-none-eabi-size Debug/F411CE.elf`
 2. Смотрите карту памяти: `grep -E '\.bss|\.data|\.rodata' Debug/F411CE.map`
 3. Оптимизируйте:
@@ -495,5 +507,3 @@ STM32F411CEUx имеет 128 KB RAM и 512 KB Flash.
 5. **Отладка**: `F5` → Debug с breakpoints
 
 ---
-
-*Последнее обновление: 2026-02-16*
